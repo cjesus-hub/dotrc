@@ -54,6 +54,30 @@ return require('packer').startup(function(use)
   use 'nvim-telescope/telescope-fzf-native.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'folke/todo-comments.nvim'
+
+  --autocompletion and hints
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-buffer' -- source text in the buffer
+  use 'hrsh7th/cmp-path'   -- usefull snippets
+  use 'saadparwaiz1/cmp_luasnip' -- autocompletion
+  use 'onsails/lspkind.nvim'  -- vs-code like pictograms
+  use  {
+      'L3MON4D3/LuaSnip',
+      version = "v2.*", -- latest release
+      build = "make install_jsregexp",  -- install jsregexp (optional!).
+  }
+
+
+  --lsp management
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  use 'WhoIsSethDaniel/mason-tool-installer.nvim'
+  -- configuring lsp servers
+  use 'hrsh7th/cmp-nvim-lsp'
+  use { 'antosha417/nvim-lsp-file-operations'}
+  use { "folke/neodev.nvim", opts = {} } 
+  use 'neovim/nvim-lspconfig'
+
   -- Amatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
