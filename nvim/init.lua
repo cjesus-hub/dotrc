@@ -8,7 +8,7 @@ require("plugins.nvim-cmp")
 
 
 require("plugins.lsp.mason")
-require("plugins.lsp.mason_maps")
+require("plugins.lsp.lsp_maps")
 require("plugins.lsp.lsp_servers")
 
 require("core.options")

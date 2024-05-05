@@ -72,11 +72,15 @@ return require('packer').startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use 'WhoIsSethDaniel/mason-tool-installer.nvim'
+
   -- configuring lsp servers
   use 'hrsh7th/cmp-nvim-lsp'
   use { 'antosha417/nvim-lsp-file-operations'}
   use { "folke/neodev.nvim", opts = {} } 
   use 'neovim/nvim-lspconfig'
+  use {'glepnir/lspsaga.nvim', branch= "main"} -- aditional ui stuff 
+  use {'onsails/lspkind.nvim'}
+  use {'jose-elias-alvarez/typescript.nvim'}
 
   -- Amatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

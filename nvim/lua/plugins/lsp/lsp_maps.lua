@@ -1,12 +1,6 @@
-local keymap = vim.keymap -- alias
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-  callback = function(ev)
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf, silent = true }
-
+--enable keybinds for available lsp servers
+local on_attach = function(client, bufnr)
+  local opts = { buffer = ev.buf, silent = true }
     -- set keybinds
     opts.desc = "Show LSP references"
     keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
@@ -46,6 +40,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     opts.desc = "Restart LSP"
     keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
-  end,
-})
+
+    if client.name == "tsserver" then
+        keymap.set ("n", "<leader>rf", ":TypescriptRenameFile<CR>")
+    end
+end
+
+
 

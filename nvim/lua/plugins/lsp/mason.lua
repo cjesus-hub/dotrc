@@ -23,6 +23,13 @@ if not cmp_nvim_lsp_status then
     return
 end
 
+-- Change the Diagnostic symbols in the sign column (gutter)
+-- (not in youtube nvim video)
+local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
 
 mason.setup(
 {
@@ -37,8 +44,8 @@ mason.setup(
 
 mason_lspconfig.setup({
     ensure_installed = {
---        "ansiblels",
---        "autotools_ls",
+        "ansiblels",
+        "autotools_ls",
 --        "bashls",
         "clangd",
         "cmake",
@@ -66,7 +73,10 @@ mason_tool_installer.setup({
     "stylua", -- lua formatter
     "isort", -- python formatter
     "black", -- python formatter
-    "pylint",
+    --"pylint",
+    "pyright",
     "eslint_d",
   },
 })
+
+--lspconfig["pylint"]
