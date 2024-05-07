@@ -23,6 +23,29 @@ if not cmp_nvim_lsp_status then
     return
 end
 
+local mason_null_ls_status, mason_null_ls =  pcall(require, "mason-null-ls")
+if not mason_null_ls_status then
+    return
+end
+
+mason_null_ls.setup({
+        ensure_installed = {
+            'black',
+            -- flake8 required_plugins can be installed via:
+            -- - `~/.local/share/nvim/mason/packages/flake8/venv/bin/pip3 install flake8-bugbear`
+            'flake8',
+            'python',
+            'flake8-bugbear',
+            -- Typeshed packages can be installed for mypy via:
+            -- `~/.local/share/nvim/mason/packages/mypy/venv/bin/pip3 install -r requirements.txt`
+            'mypy@0.971',
+            'shellcheck',
+        },
+        automatic_installation = true,
+        automatic_setup = true,
+    })
+
+
 -- Change the Diagnostic symbols in the sign column (gutter)
 -- (not in youtube nvim video)
 local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
@@ -71,6 +94,7 @@ mason_lspconfig.setup({
 mason_tool_installer.setup({
   ensure_installed = {
     "prettier", -- prettier formatter
+    "flake8",
     "stylua", -- lua formatter
     "isort", -- python formatter
     "black", -- python formatter

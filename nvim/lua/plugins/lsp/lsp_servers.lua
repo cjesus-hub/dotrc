@@ -66,3 +66,25 @@ lspconfig["bashls"].setup({
 })
 
 
+
+local null_ls_status, null_ls =  pcall(require, "null-ls")
+if not null_ls_status then
+    return
+end
+
+local formatting =  null_ls.builtins.formatting
+local diagnostics =  null_ls.builtins.diagnostics
+
+
+local ls = require('null-ls')
+ls.setup({
+  -- debug = true, -- Turn on debug for :NullLsLog
+  diagnostics_format = "#{m} #{s}[#{c}]",
+  sources = {
+    formatting.prettier,
+    formatting.stylua,
+    formatting.black.with({
+      extra_args = {"--line-length=120", "--skip-string-normalization"},
+    }),
+  }
+})

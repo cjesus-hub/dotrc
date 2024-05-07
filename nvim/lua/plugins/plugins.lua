@@ -60,7 +60,6 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-buffer' -- source text in the buffer
   use 'hrsh7th/cmp-path'   -- usefull snippets
   use 'saadparwaiz1/cmp_luasnip' -- autocompletion
-  use 'onsails/lspkind.nvim'  -- vs-code like pictograms
   use  {
       'L3MON4D3/LuaSnip',
       version = "v2.*", -- latest release
@@ -81,6 +80,23 @@ return require('packer').startup(function(use)
   use {'glepnir/lspsaga.nvim', branch= "main"} -- aditional ui stuff 
   use {'onsails/lspkind.nvim'}
   use {'jose-elias-alvarez/typescript.nvim'}
+
+  -- formating and linting
+  --use {'jose-elias-alvarez/null-ls.nvim'} dead
+  use {'nvimtools/none-ls.nvim'}
+
+
+  --treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = function()
+        require("nvim-treesitter.install").update({with_sync =true})
+    end,
+ }
+
+ -- autocllosing
+ use ("windwp/nvim-autopairs")
+ use ("windwp/nvim-ts-autotag")
 
   -- Amatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
